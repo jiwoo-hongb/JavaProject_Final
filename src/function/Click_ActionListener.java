@@ -13,4 +13,10 @@ public class Click_ActionListener implements ActionListener {
         btn.setBackground(design.getBtnClickColor());
 
     }
+
+    public void actionPerformed_re(ActionEvent e) {
+        JButton btn = (JButton) e.getSource();
+        btn.setBackground(design.getBtnColor());
+
+    }
 }
