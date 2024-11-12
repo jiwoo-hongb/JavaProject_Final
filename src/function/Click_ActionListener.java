@@ -11,12 +11,12 @@ public class Click_ActionListener implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         JButton btn = (JButton) e.getSource();
         btn.setBackground(design.getBtnClickColor());
-
+        System.out.println(btn.getText());
     }
 
     public void actionPerformed_re(ActionEvent e) {
         JButton btn = (JButton) e.getSource();
         btn.setBackground(design.getBtnColor());
-
+        System.out.println(btn.getText() + " 취소");
     }
 }
