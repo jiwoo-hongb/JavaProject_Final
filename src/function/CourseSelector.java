@@ -2,27 +2,25 @@ package function;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import gui.Gui_Design;
-
 import javax.swing.*;
+import data.CourseLoader;
 
-import data.Test_majorDataRead;
+public class CourseSelector implements ActionListener {
+    private CourseLoader courseLoader;  // CourseLoader 객체
 
-public class Click_ActionListener implements ActionListener {
-    Gui_Design design = new Gui_Design();
-    Test_majorDataRead testMajorDataRead = new Test_majorDataRead();  // CourseSchedule 객체 생성 **
+    public CourseSelector(CourseLoader courseLoader) {
+        this.courseLoader = courseLoader;  // CourseLoader 객체를 받아옴
+    }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         JButton btn = (JButton) e.getSource();
-        btn.setBackground(design.getBtnClickColor());
 
-        // **********************
-        // 버튼에 설정된 텍스트(과목명)을 가져옴
-        String courseName = btn.getText();
+        // 버튼 텍스트에서 과목명만 정확하게 추출 (공백을 기준으로 첫 번째 부분만 가져옴)
+        String courseName = btn.getText().split(" ")[0].trim();  // 공백을 기준으로 첫 번째 부분만 가져오고 trim()으로 앞뒤 공백 제거
 
-        // CourseSchedule에서 해당 과목의 정보를 가져옴
-        String courseDetails = testMajorDataRead.getCourseDetails(courseName);
+        // CourseLoader에서 해당 과목의 정보를 가져옴
+        String courseDetails = courseLoader.getCourseDetails(courseName);
 
         // 콘솔에 출력 (GUI에서 보여주려면 JOptionPane 등으로 띄울 수 있음)
         System.out.println(courseDetails);
@@ -33,7 +31,6 @@ public class Click_ActionListener implements ActionListener {
 
     public void actionPerformed_re(ActionEvent e) {
         JButton btn = (JButton) e.getSource();
-        btn.setBackground(design.getBtnColor());
         System.out.println(btn.getText() + " 취소");
     }
 }
