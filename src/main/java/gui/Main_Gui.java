@@ -2,21 +2,25 @@ package gui;
 
 import function.Click_ActionListener;
 import function.MyButton;
+import function.TimeTable;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class Main_Gui extends JFrame {
     Gui_Design design = new Gui_Design();
-    Click_ActionListener click = new Click_ActionListener();
+//    Click_ActionListener click = new Click_ActionListener();
+    TimeTable timeTable;
 
     Main_Gui() {
+        timeTable = new TimeTable();
+        Click_ActionListener click = new Click_ActionListener(timeTable);
         setTitle("시간표 마법사 💫");
         setSize(351, 759);
         setLayout(new BorderLayout());
 
         showNorth();
-        showCenter();
+        showCenter(click);
         showSouth();
 
         setVisible(true);
@@ -38,7 +42,7 @@ public class Main_Gui extends JFrame {
         panel.add(credit);
         add(panel, BorderLayout.NORTH);
     }
-    void showCenter(){
+    void showCenter(Click_ActionListener click){
         MyPanel panel1 = new MyPanel();; // 전체 테두리
         panel1.setLayout(new BoxLayout(panel1, BoxLayout.Y_AXIS)); // 패널1의 레이아웃 설정
         JLabel major = new JLabel("전공");
@@ -50,14 +54,23 @@ public class Main_Gui extends JFrame {
         //[전공 과목]
         MyButton btn_Java = new MyButton("JAVA프로그래밍2");
         btn_Java.setBackground(design.getBtnColor());
+        btn_Java.addActionListener(click);
+
         MyButton btn_GUI = new MyButton("GUI프로그래밍");
         btn_GUI.setBackground(design.getBtnColor());
+        btn_GUI.addActionListener(click);
+
         MyButton btn_Algorithem = new MyButton("알고리즘설계");
         btn_Algorithem.setBackground(design.getBtnColor());
+        btn_Algorithem.addActionListener(click);
+
         MyButton btn_BigData = new MyButton("빅데이터처리");
         btn_BigData.setBackground(design.getBtnColor());
+        btn_BigData.addActionListener(click);
+
         MyButton btn_OS = new MyButton("운영체제");
         btn_OS.setBackground(design.getBtnColor());
+        btn_OS.addActionListener(click);
 
         panel2.add(btn_Java);
         panel2.add(btn_GUI);
@@ -70,8 +83,9 @@ public class Main_Gui extends JFrame {
 
         JLabel culture = new JLabel("교양 필수");
         culture.setForeground(Color.WHITE);
-        MyButton btn_English3 = new MyButton("English3 boris");
+        MyButton btn_English3 = new MyButton("English3");
         btn_English3.setBackground(design.getBtnColor());
+        btn_English3.addActionListener(click);
         panel3.add(btn_English3);
 
 

@@ -6,7 +6,7 @@ import java.awt.event.ActionListener;
 import gui.Gui_Design;
 
 public class MyButton extends JButton {
-    Click_ActionListener click_ActionListener = new Click_ActionListener();
+    Click_ActionListener click_ActionListener = new Click_ActionListener(new TimeTable());
     private boolean isToggled = false;
 
     public MyButton() {
