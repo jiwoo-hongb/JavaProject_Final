@@ -104,6 +104,23 @@ public class TimeTable {
         return true;
     }
 
+    public boolean removeSubjectFromTimetable(String subject) {
+        // 시간표에서 과목을 찾아 제거
+        boolean removed = false;
+
+        for (int day = 0; day < timetable.length; day++) {
+            for (int time = 0; time < timetable[day].length; time++) {
+                if (subject.equals(timetable[day][time])) {
+                    timetable[day][time] = null; // 해당 과목 제거
+                    removed = true;
+                }
+            }
+        }
+
+        return removed; // 과목이 제거되었는지 여부 반환
+    }
+
+
     /**
      * 요일 문자열을 배열 인덱스로 변환합니다.
      *
