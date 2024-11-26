@@ -14,6 +14,7 @@ public class Main_Gui extends JFrame {
         setTitle("시간표 마법사 💫");
         setSize(355, 770);
         setLayout(new BorderLayout());
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         showNorth();
         showCenter();
@@ -144,6 +145,13 @@ public class Main_Gui extends JFrame {
         btn_next.setBackground(design.getPanelColor());
         btn_next.setAlignmentX(Component.LEFT_ALIGNMENT); // 왼쪽 정렬
         btn_next.setForeground(Color.WHITE);
+
+        // 버튼 클릭 시 현재 프레임 닫고 새로운 프레임 열기
+        btn_next.addActionListener(e -> {
+            setVisible(false); // 현재 프레임(Main_Gui) 비가시화
+            new Main_Gui2().setVisible(true); // Main_Gui2 프레임 가시화
+        });
+
 
         panel.add(btn_next);
         add(panel, BorderLayout.SOUTH);

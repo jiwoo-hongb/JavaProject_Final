@@ -118,6 +118,19 @@ public class TimeTable {
             default: return -1;
         }
     }
+    // 시간표에서 과목 제거
+    public boolean removeSubjectFromTimetable(String subject) {
+        boolean removed = false;
+        for (int day = 0; day < timetable.length; day++) {
+            for (int time = 0; time < timetable[day].length; time++) {
+                if (subject.equals(timetable[day][time])) {
+                    timetable[day][time] = null; // 과목 삭제
+                    removed = true;
+                }
+            }
+        }
+        return removed;
+    }
 
     // 인덱스 -> 요일 문자열
     private String dayIndexToString(int dayIndex) {

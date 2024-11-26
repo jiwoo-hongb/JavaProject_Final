@@ -55,11 +55,13 @@ public class Click_ActionListener implements ActionListener {
         //String subject = btn.getText(); // 클릭된 버튼의 텍스트 (과목 이름)
 
         // 시간표에서 과목 제거
-//        if (timeTable.removeSubjectFromTimetable(subject)) {
-//            System.out.println(subject + " removed from the timetable.");
-//        } else {
-//            System.out.println(subject + " could not be removed (not found in timetable).");
-//        }
+        if (timeTable.removeSubjectFromTimetable(subject)) {
+            System.out.println(subject + " removed from the timetable.");
+        } else {
+            System.out.println(subject + " could not be removed (not found in timetable).");
+        }
+
+        timeTable.printTimetable();
     }
 
 }
