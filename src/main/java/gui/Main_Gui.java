@@ -44,9 +44,6 @@ public class Main_Gui extends JFrame {
     // 버튼 크기 및 스타일 설정 함수
     private void setupButton(MyButton button) {
         button.setBackground(design.getBtnColor());
-//        button.setMaximumSize(size); // 버튼의 최대 크기 설정
-//        button.setMinimumSize(size); // 버튼의 최소 크기 설정
-//        button.setPreferredSize(size); // 버튼의 기본 크기 설정
         button.setAlignmentX(Component.LEFT_ALIGNMENT); // 왼쪽 정렬
     }
 
@@ -68,7 +65,7 @@ public class Main_Gui extends JFrame {
 
 
         // [전공 과목 버튼]
-        String javaText = myBtn.setButtonTitle("JAVA프로그래밍", "남수만");
+        String javaText = myBtn.setButtonTitle("JAVA프로그래밍2", "남수만");
         MyButton btn_Java = new MyButton(javaText);
         btn_Java.setFont(new Font("Pretendard", Font.BOLD, 0));
         setupButton(btn_Java);
