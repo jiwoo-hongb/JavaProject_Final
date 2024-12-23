@@ -15,13 +15,16 @@ public class Click_ActionListener implements ActionListener {
     Gui_Design design = new Gui_Design();
     Data_read data = new Data_read();
     Data_TF dataTF = new Data_TF();
+    JFrame currentFrame; // 현재 프레임을 저장하는 변수
 
     TimeTable timeTable;
+
 
     public Click_ActionListener(TimeTable timeTable) {
         this.timeTable = timeTable;
     }
 
+    //timetable에 과목 추가
     public void actionPerformed(ActionEvent e) {
 //        MyButton btn = (MyButton) e.getSource();
         JButton btn = (JButton) e.getSource();
@@ -44,6 +47,7 @@ public class Click_ActionListener implements ActionListener {
 
     }
 
+    //기존 timetable에서 과목 제거
     public void actionPerformed_re(ActionEvent e) {
         JButton btn = (JButton) e.getSource();
         btn.setBackground(design.getBtnColor()); // 버튼 색상 원래대로 변경
@@ -60,7 +64,6 @@ public class Click_ActionListener implements ActionListener {
         } else {
             System.out.println(subject + " could not be removed (not found in timetable).");
         }
-
         timeTable.printTimetable();
     }
 

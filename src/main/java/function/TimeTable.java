@@ -13,7 +13,7 @@ public class TimeTable {
     private final Data_read dataRead; // 데이터 로드 객체
 
     // 생성자: 외부에서 직접 호출하지 못하도록 private
-    private TimeTable() {
+    public TimeTable() {
         this.dataRead = new Data_read();
         this.timetable = new String[5][9]; // 시간표 배열 초기화
         this.subjectTimes = new HashMap<>();
@@ -142,5 +142,9 @@ public class TimeTable {
             case 4: return "금";
             default: return "";
         }
+    }
+    // 시간표 배열 반환
+    public String[][] getTimetable() {
+        return timetable;
     }
 }

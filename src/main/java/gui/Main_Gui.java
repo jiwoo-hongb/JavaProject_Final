@@ -4,6 +4,7 @@ import function.MyButton;
 import javax.swing.*;
 import java.awt.*;
 import function.MyButton;
+import function.TimeTable;
 
 public class Main_Gui extends JFrame {
     Gui_Design design = new Gui_Design();
@@ -149,9 +150,8 @@ public class Main_Gui extends JFrame {
         // 버튼 클릭 시 현재 프레임 닫고 새로운 프레임 열기
         btn_next.addActionListener(e -> {
             setVisible(false); // 현재 프레임(Main_Gui) 비가시화
-            new Main_Gui2().setVisible(true); // Main_Gui2 프레임 가시화
+            new Main_Gui2(TimeTable.getInstance()).setVisible(true); // Main_Gui2로 TimeTable 전달
         });
-
 
         panel.add(btn_next);
         add(panel, BorderLayout.SOUTH);
