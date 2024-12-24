@@ -1,47 +1,32 @@
 package gui;
 
 import data.Data_read2;
+import function.TimeTable2;
 
 import javax.swing.*;
 import java.awt.*;
 import java.util.List;
-import function.TimeTable2;
+import java.util.Map;
 
 public class Main_Gui2 extends JFrame {
-    private String[][] timetable;
-    private Data_read2 dataReader;
-
     public Main_Gui2(String[][] timetable) {
-        this.timetable = timetable;
-        this.dataReader = new Data_read2(); // CSV 데이터 읽기
-
-        // JFrame 설정
-        setTitle("TimeTable 처리");
-        setSize(800, 600);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setTitle("추천 과목 리스트");
+        setSize(400, 600);
         setLayout(new BorderLayout());
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        // 요일별 추천 리스트 처리
-        JTextArea resultArea = new JTextArea();
-        resultArea.setEditable(false);
+        Data_read2 dataReader = new Data_read2();
 
-        // 요일별 리스트 생성 및 데이터 추가
-        List<String> mondayList = TimeTable2.getEmptySlotsAndFill(timetable, dataReader, "월");
-        List<String> tuesdayList = TimeTable2.getEmptySlotsAndFill(timetable, dataReader, "화");
-        List<String> wednesdayList = TimeTable2.getEmptySlotsAndFill(timetable, dataReader, "수");
-        List<String> thursdayList = TimeTable2.getEmptySlotsAndFill(timetable, dataReader, "목");
-        List<String> fridayList = TimeTable2.getEmptySlotsAndFill(timetable, dataReader, "금");
+        // 추천 과목 얻기
+        Map<String, List<String>> recommendations = TimeTable2.getRecommendations(timetable, dataReader);
 
-        // 추천 시간표 출력
-        StringBuilder sb = new StringBuilder();
-        sb.append("요일별 추천 과목:\n");
-        sb.append("월요일: ").append(mondayList).append("\n");
-        sb.append("화요일: ").append(tuesdayList).append("\n");
-        sb.append("수요일: ").append(wednesdayList).append("\n");
-        sb.append("목요일: ").append(thursdayList).append("\n");
-        sb.append("금요일: ").append(fridayList).append("\n");
+        // 추천 과목 출력
+        JTextArea textArea = new JTextArea();
+        recommendations.forEach((day, subjects) -> {
+            textArea.append(day + "요일 추천 과목: " + subjects + "\n");
+        });
 
-        resultArea.setText(sb.toString());
-        add(new JScrollPane(resultArea), BorderLayout.CENTER);
+        add(new JScrollPane(textArea), BorderLayout.CENTER);
+        setVisible(true);
     }
 }

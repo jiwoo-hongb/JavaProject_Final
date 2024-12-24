@@ -1,55 +1,74 @@
 package function;
 
+import java.util.*;
 import data.Data_read2;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-
 public class TimeTable2 {
-    public static List<String> getEmptySlotsAndFill(String[][] timetable, Data_read2 dataReader, String day) {
-        List<String> dayList = new ArrayList<>();
+
+    public static Map<String, List<String>> getRecommendations(String[][] timetable, Data_read2 dataReader) {
+        // LinkedHashMap을 사용하여 요일 순서 유지
+        Map<String, List<String>> recommendations = new LinkedHashMap<>();
         Map<String, String> subjectTimes = dataReader.getSubjectTimes();
 
+        // 요일별 초기화
+        String[] days = {"월", "화", "수", "목", "금"};
+        for (String day : days) {
+            recommendations.put(day, new ArrayList<>());
+        }
+
+        // 각 과목을 시간표와 비교하여 추천 리스트에 추가
         for (Map.Entry<String, String> entry : subjectTimes.entrySet()) {
             String subject = entry.getKey();
             String time = entry.getValue();
 
-            if (time.contains(day)) {
-                String[] times = time.replace(day, "").replace("(", "").replace(")", "").split(",");
+            // 시간 정보를 파싱
+            String[] timeParts = time.split("\\(");
+            String day = timeParts[0]; // 요일
+            String[] periods = timeParts[1].replace(")", "").split(",");
+
+            if (recommendations.containsKey(day)) {
                 boolean canAdd = true;
 
-                for (String t : times) {
+                // timetable과 충돌 체크
+                for (String periodStr : periods) {
                     try {
-                        int period = Integer.parseInt(t) - 1; // 교시를 인덱스로 변환
+                        int period = Integer.parseInt(periodStr) - 1;
                         int dayIndex = convertDayToIndex(day);
 
-                        // 유효성 검사: 시간표 범위를 초과하지 않는지 확인
-                        if (period < 0 || period >= timetable[dayIndex].length || timetable[dayIndex][period] != null) {
+                        // **배열 범위 검사**
+                        if (dayIndex < 0 || dayIndex >= timetable.length || period < 0 || period >= timetable[0].length) {
+                            System.out.println("잘못된 시간 정보: " + subject + " - " + periodStr);
                             canAdd = false;
                             break;
                         }
-                    } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
-                        System.err.println("Invalid period or index out of bounds: " + t);
+
+                        // timetable에 이미 다른 과목이 있으면 추가 불가
+                        if (timetable[dayIndex][period] != null) {
+                            canAdd = false;
+                            break;
+                        }
+                    } catch (NumberFormatException e) {
+                        System.out.println("잘못된 시간 형식: " + subject + " - " + periodStr);
                         canAdd = false;
                         break;
                     }
                 }
 
+                // timetable과 충돌이 없으면 추천 리스트에 추가
                 if (canAdd) {
-                    dayList.add(subject);
-
-                    for (String t : times) {
-                        int period = Integer.parseInt(t) - 1;
-                        int dayIndex = convertDayToIndex(day);
-                        timetable[dayIndex][period] = subject; // 시간표에 추가
-                    }
+                    recommendations.get(day).add(subject);
                 }
             }
         }
-        return dayList;
+        return recommendations;
     }
 
+    /**
+     * 요일을 배열 인덱스로 변환하는 메서드.
+     *
+     * @param day 요일 문자열
+     * @return 요일에 해당하는 배열 인덱스
+     */
     private static int convertDayToIndex(String day) {
         switch (day) {
             case "월": return 0;
@@ -57,7 +76,9 @@ public class TimeTable2 {
             case "수": return 2;
             case "목": return 3;
             case "금": return 4;
-            default: throw new IllegalArgumentException("잘못된 요일 입력: " + day);
+            default:
+                System.out.println("잘못된 요일: " + day);
+                return -1; // 잘못된 요일은 -1 반환
         }
     }
 }
