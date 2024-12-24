@@ -150,7 +150,8 @@ public class Main_Gui extends JFrame {
         // 버튼 클릭 시 현재 프레임 닫고 새로운 프레임 열기
         btn_next.addActionListener(e -> {
             setVisible(false); // 현재 프레임(Main_Gui) 비가시화
-            new Main_Gui2(TimeTable.getInstance()).setVisible(true); // Main_Gui2로 TimeTable 전달
+            String[][] timetable = TimeTable.getInstance().getTimetable(); // 시간표 인스턴스 가져오기
+            new Main_Gui2(timetable).setVisible(true); // Main_Gui2 실행
         });
 
         panel.add(btn_next);
