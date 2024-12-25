@@ -104,7 +104,6 @@ public class Main_Gui2 extends JFrame {
     }
 
     // 선택한 과목의 정보를 표시하는 메서드
-    // 선택한 과목의 정보를 표시하는 메서드
     private void showSubjectDetails(String subject) {
         // 과목 정보 가져오기
         Map<String, String[]> detailedInfo = dataReader.getDetailedSubjectInfo();
