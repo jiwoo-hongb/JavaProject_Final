@@ -14,10 +14,9 @@ public class Main_Gui2 extends JFrame {
 
     private JComboBox<String> dayComboBox;
     private JList<String> subjectList;
-    private TimeTable2 timetable;
     private Data_read2 dataReader; // Data_read2 참조 추가
-    Gui_Design design = new Gui_Design();
-    String[][] timetableArray;
+    private String[][] timetableArray;
+    private Gui_Design design = new Gui_Design();
 
     public Main_Gui2(String[][] timetableArray, Data_read2 dataReader) {
         this.dataReader = dataReader;
@@ -37,7 +36,7 @@ public class Main_Gui2 extends JFrame {
         // 상단 패널: 요일 선택 콤보박스
         MyPanel panel = new MyPanel();
         RoundPanel panel_Background = new RoundPanel(20);
-        panel_Background.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
+        panel_Background.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         panel.setBorder(BorderFactory.createLineBorder(Color.darkGray, 1));
         panel_Background.setBackground(design.getPanelColor());
 
@@ -49,66 +48,82 @@ public class Main_Gui2 extends JFrame {
         // 버튼 클릭 이벤트 처리
         showButton.addActionListener(e -> {
             String selectedDay = (String) dayComboBox.getSelectedItem();
-            showRecommendations(timetableArray, selectedDay);
+            showRecommendations(selectedDay);
         });
 
         panel_Background.add(label);
         panel_Background.add(dayComboBox);
         panel_Background.add(showButton);
         panel.add(panel_Background);
-//        panel.setLayout(new FlowLayout());
         add(panel, BorderLayout.NORTH);
     }
 
     void showCenter() {
         // 추천 과목 영역 패널
         JPanel subjectPanel = new JPanel();
-        subjectPanel.setLayout(new GridLayout(0, 1)); // 과목 버튼들을 세로로 정렬
+        subjectPanel.setLayout(new BorderLayout());
 
-        // 추천 과목 생성 및 이벤트 연결
-        Map<String, List<String>> recommendations = TimeTable2.getRecommendations(timetableArray, dataReader);
-        for (Map.Entry<String, List<String>> entry : recommendations.entrySet()) {
-            for (String subject : entry.getValue()) {
-                JButton subjectButton = new JButton(subject);
+        subjectList = new JList<>();
+        subjectList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
-                // 마우스 이벤트 추가
-                subjectButton.addMouseListener(new java.awt.event.MouseAdapter() {
-                    @Override
-                    public void mouseClicked(java.awt.event.MouseEvent e) {
-                        // 과목 정보 가져오기
-                        Map<String, String[]> detailedInfo = dataReader.getDetailedSubjectInfo();
-                        String[] info = detailedInfo.get(subject);
-
-                        if (info != null) {
-                            SubjectInfoPopup.showSubjectInfo(subjectButton, info[0], info[1], info[2], info[3], info[4], info[5]);
-                        } else {
-                            JOptionPane.showMessageDialog(subjectButton, "해당 과목의 정보를 찾을 수 없습니다.", "오류", JOptionPane.ERROR_MESSAGE);
-                        }
-                    }
-                });
-
-                // 패널에 버튼 추가
-                subjectPanel.add(subjectButton);
+        // 리스트 선택 이벤트 추가
+        subjectList.addListSelectionListener(e -> {
+            if (!e.getValueIsAdjusting()) {
+                String selectedSubject = subjectList.getSelectedValue();
+                if (selectedSubject != null) {
+                    showSubjectDetails(selectedSubject);
+                }
             }
-        }
+        });
 
-        JScrollPane scrollPane = new JScrollPane(subjectPanel);
-        add(scrollPane, BorderLayout.CENTER);
+        JScrollPane scrollPane = new JScrollPane(subjectList);
+        subjectPanel.add(scrollPane, BorderLayout.CENTER);
+
+        add(subjectPanel, BorderLayout.CENTER);
     }
 
-
     // 추천 과목을 리스트에 표시하는 메서드
-    private void showRecommendations(String[][] timetableArray, String day) {
-        // TimeTable2에서 추천 과목 데이터 가져오기
-        Map<String, List<String>> recommendations = TimeTable2.getRecommendations(timetableArray, dataReader);
+    private void showRecommendations(String selectedDay) {
+        // 추천 과목 가져오기
+        Map<String, List<String>> recommendations = TimeTable2.getRecommendationsRefactored(timetableArray, dataReader);
 
-        // 선택한 요일에 해당하는 추천 과목 가져오기
-        List<String> subjects = recommendations.get(day);
+        // 선택한 요일에 해당하는 과목 리스트 가져오기
+        List<String> subjects = recommendations.get(selectedDay);
 
         if (subjects != null && !subjects.isEmpty()) {
+            System.out.println("선택된 요일: " + selectedDay + ", 추천 과목: " + subjects);
             subjectList.setListData(subjects.toArray(new String[0]));
         } else {
             subjectList.setListData(new String[]{"추천 과목이 없습니다."});
+        }
+    }
+
+    // 선택한 과목의 정보를 표시하는 메서드
+    // 선택한 과목의 정보를 표시하는 메서드
+    private void showSubjectDetails(String subject) {
+        // 과목 정보 가져오기
+        Map<String, String[]> detailedInfo = dataReader.getDetailedSubjectInfo();
+        String[] info = detailedInfo.get(subject);
+
+        if (info != null) {
+            // 팝업으로 과목 정보를 표시
+            // SubjectInfoPopup.showSubjectInfo(parent, subjectName, professor, time, location, credits, category)
+            SubjectInfoPopup.showSubjectInfo(
+                    this,  // 부모 컴포넌트 (Main_Gui2 인스턴스를 전달)
+                    subject,  // 교과목 이름
+                    info[1],  // 교수 이름
+                    info[2],  // 시간
+                    info[3],  // 장소
+                    info[4],  // 학점
+                    info[5]   // 영역
+            );
+        } else {
+            JOptionPane.showMessageDialog(
+                    this,
+                    "해당 과목의 정보를 찾을 수 없습니다.",
+                    "오류",
+                    JOptionPane.ERROR_MESSAGE
+            );
         }
     }
 }
