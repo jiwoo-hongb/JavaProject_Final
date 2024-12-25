@@ -24,7 +24,7 @@ class CustomListCellRenderer extends DefaultListCellRenderer {
         }
 
         // 폰트 및 여백 설정
-        label.setFont(new Font("Malgun Gothic", Font.PLAIN, 14)); // 맑은 고딕 폰트
+        label.setFont(new Font("Pretendard", Font.BOLD, 14)); // 맑은 고딕 폰트
         label.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5)); // 여백 추가
 
         return label;

@@ -40,10 +40,20 @@ public class Main_Gui2 extends JFrame {
         panel.setBorder(BorderFactory.createLineBorder(Color.darkGray, 1));
         panel_Background.setBackground(design.getPanelColor());
 
-        JLabel label = new JLabel("요일 선택: ");
-        dayComboBox = new JComboBox<>(new String[]{"월", "화", "수", "목", "금"});
-        MyButton showButton = new MyButton("보기");
+        JLabel label = new JLabel("요일: ");
         label.setForeground(Color.WHITE);
+        label.setFont(new Font("Pretendard", Font.BOLD, 20));
+        label.setBorder(BorderFactory.createEmptyBorder(0, 30, 0, 30));
+
+        dayComboBox = new JComboBox<>(new String[]{"월", "화", "수", "목", "금"});
+        dayComboBox.setFont(new Font("Pretendard", Font.PLAIN, 18));
+        dayComboBox.setRenderer(new CustomComboBoxRenderer());
+        dayComboBox.setBorder(BorderFactory.createLineBorder(Color.darkGray, 1)); // 테두리 설정
+
+        MyButton showButton = new MyButton("보기");
+        showButton.setFont(new Font("Pretendard", Font.BOLD, 20));
+        showButton.setForeground(Color.WHITE);
+        showButton.setBackground(design.getPanelColor());
 
         // 버튼 클릭 이벤트 처리
         showButton.addActionListener(e -> {
