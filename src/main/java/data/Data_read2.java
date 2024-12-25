@@ -75,4 +75,24 @@ public class Data_read2 {
     public Map<String, String> getSubjectTimes() {
         return subjectTimes;
     }
+
+    public Map<String, String[]> getDetailedSubjectInfo() {
+        // 과목별 상세 정보를 반환 (교과목, 교수, 시간, 장소, 학점, 영역)
+        Map<String, String[]> detailedInfo = new HashMap<>();
+        for (String[] row : rows) {
+            if (row.length >= 6) { // 최소 6개의 열이 있어야 함
+                String subject = row[0].trim();
+                detailedInfo.put(subject, new String[]{
+                        row[0], // 교과목
+                        row[1], // 교수
+                        row[2], // 시간
+                        row[3], // 장소
+                        row[4], // 학점
+                        row[5]  // 영역
+                });
+            }
+        }
+        return detailedInfo;
+    }
+
 }

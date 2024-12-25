@@ -1,6 +1,7 @@
 package gui;
 
 import function.MyButton;
+import function.SubjectInfoPopup;
 import function.TimeTable2;
 import data.Data_read2;
 
@@ -43,6 +44,7 @@ public class Main_Gui2 extends JFrame {
         JLabel label = new JLabel("요일 선택: ");
         dayComboBox = new JComboBox<>(new String[]{"월", "화", "수", "목", "금"});
         MyButton showButton = new MyButton("보기");
+        label.setForeground(Color.WHITE);
 
         // 버튼 클릭 이벤트 처리
         showButton.addActionListener(e -> {
@@ -59,11 +61,41 @@ public class Main_Gui2 extends JFrame {
     }
 
     void showCenter() {
-        // 중앙 패널: 추천 과목 표시 영역
-        subjectList = new JList<>();
-        JScrollPane scrollPane = new JScrollPane(subjectList);
+        // 추천 과목 영역 패널
+        JPanel subjectPanel = new JPanel();
+        subjectPanel.setLayout(new GridLayout(0, 1)); // 과목 버튼들을 세로로 정렬
+
+        // 추천 과목 생성 및 이벤트 연결
+        Map<String, List<String>> recommendations = TimeTable2.getRecommendations(timetableArray, dataReader);
+        for (Map.Entry<String, List<String>> entry : recommendations.entrySet()) {
+            for (String subject : entry.getValue()) {
+                JButton subjectButton = new JButton(subject);
+
+                // 마우스 이벤트 추가
+                subjectButton.addMouseListener(new java.awt.event.MouseAdapter() {
+                    @Override
+                    public void mouseClicked(java.awt.event.MouseEvent e) {
+                        // 과목 정보 가져오기
+                        Map<String, String[]> detailedInfo = dataReader.getDetailedSubjectInfo();
+                        String[] info = detailedInfo.get(subject);
+
+                        if (info != null) {
+                            SubjectInfoPopup.showSubjectInfo(subjectButton, info[0], info[1], info[2], info[3], info[4], info[5]);
+                        } else {
+                            JOptionPane.showMessageDialog(subjectButton, "해당 과목의 정보를 찾을 수 없습니다.", "오류", JOptionPane.ERROR_MESSAGE);
+                        }
+                    }
+                });
+
+                // 패널에 버튼 추가
+                subjectPanel.add(subjectButton);
+            }
+        }
+
+        JScrollPane scrollPane = new JScrollPane(subjectPanel);
         add(scrollPane, BorderLayout.CENTER);
     }
+
 
     // 추천 과목을 리스트에 표시하는 메서드
     private void showRecommendations(String[][] timetableArray, String day) {
