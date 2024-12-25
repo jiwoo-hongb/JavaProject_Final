@@ -1,3 +1,15 @@
+package gui;
+
+import function.MyButton;
+import function.SubjectInfoPopup;
+import function.TimeTable2;
+import data.Data_read2;
+
+import javax.swing.*;
+import java.awt.*;
+import java.util.List;
+import java.util.Map;
+
 /**
  * Main_Gui2 클래스는 시간표 마법사의 메인 GUI를 구현합니다.
  * 이 클래스는 사용자에게 요일을 선택하고, 해당 요일에 추천된 과목을 표시하며,
@@ -15,17 +27,6 @@
  * </pre>
  * </p>
  */
-package gui;
-
-import function.MyButton;
-import function.SubjectInfoPopup;
-import function.TimeTable2;
-import data.Data_read2;
-
-import javax.swing.*;
-import java.awt.*;
-import java.util.List;
-import java.util.Map;
 
 public class Main_Gui2 extends JFrame {
 

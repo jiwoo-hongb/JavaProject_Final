@@ -1,3 +1,10 @@
+package function;
+
+import javax.swing.*;
+import java.awt.*;
+import gui.Gui_Design;
+import gui.RoundPanel;
+
 /**
  * SubjectInfoPopup 클래스는 과목 정보를 팝업 창으로 표시하는 기능을 제공합니다.
  * 사용자가 과목을 선택하면 해당 과목에 대한 상세 정보를 팝업으로 띄워줍니다.
@@ -10,12 +17,6 @@
  * </pre>
  * </p>
  */
-package function;
-
-import javax.swing.*;
-import java.awt.*;
-import gui.Gui_Design;
-import gui.RoundPanel;
 
 public class SubjectInfoPopup {
 

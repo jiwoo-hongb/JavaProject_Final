@@ -1,3 +1,8 @@
+package gui;
+
+import javax.swing.*;
+import java.awt.*;
+
 /**
  * RoundPanel 클래스는 둥근 모서리를 가진 JPanel을 구현한 클래스입니다.
  * 이 클래스는 지정된 반지름(radius)을 사용하여 패널의 모서리를 둥글게 처리하며,
@@ -12,10 +17,6 @@
  * </pre>
  * </p>
  */
-package gui;
-
-import javax.swing.*;
-import java.awt.*;
 
 public class RoundPanel extends JPanel {
 

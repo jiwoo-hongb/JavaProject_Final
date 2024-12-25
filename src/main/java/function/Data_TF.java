@@ -1,3 +1,8 @@
+package function;
+
+import java.util.List;
+import data.Data_read;
+
 /**
  * Data_TF 클래스는 교과목 데이터를 처리하는 클래스입니다.
  * 이 클래스는 Data_read 객체를 통해 교과목 데이터를 로드하고, 주어진 버튼 텍스트와 교과목 목록을 비교하는 기능을 제공합니다.
@@ -11,10 +16,6 @@
  * </pre>
  * </p>
  */
-package function;
-
-import java.util.List;
-import data.Data_read;
 
 public class Data_TF {
 

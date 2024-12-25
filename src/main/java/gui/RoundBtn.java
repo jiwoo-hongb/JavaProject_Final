@@ -1,3 +1,10 @@
+package gui;
+
+import javax.swing.*;
+import javax.swing.plaf.basic.BasicHTML;
+import javax.swing.text.View;
+import java.awt.*;
+
 /**
  * RoundBtn 클래스는 둥근 모서리를 가진 커스터마이즈된 JButton입니다.
  * 이 클래스는 버튼의 배경을 둥글게 그리며, 버튼에 텍스트나 HTML을 렌더링할 수 있도록 합니다.
@@ -12,12 +19,6 @@
  * </pre>
  * </p>
  */
-package gui;
-
-import javax.swing.*;
-import javax.swing.plaf.basic.BasicHTML;
-import javax.swing.text.View;
-import java.awt.*;
 
 public class RoundBtn extends JButton {
 

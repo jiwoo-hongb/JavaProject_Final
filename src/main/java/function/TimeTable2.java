@@ -1,3 +1,8 @@
+package function;
+
+import java.util.*;
+import data.Data_read2;
+
 /**
  * TimeTable2 클래스는 시간표에 교양 과목을 추천하는 기능을 제공합니다.
  * 이 클래스는 과목의 시간 정보와 기존 시간표를 바탕으로, 추가 가능한 교양 과목을 추천합니다.
@@ -17,10 +22,6 @@
  * </pre>
  * </p>
  */
-package function;
-
-import java.util.*;
-import data.Data_read2;
 
 public class TimeTable2 {
 

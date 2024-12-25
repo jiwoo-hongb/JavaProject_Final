@@ -1,3 +1,15 @@
+package function;
+
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import gui.Gui_Design;
+import data.Data_read;
+import javax.swing.*;
+
 /**
  * Click_ActionListener 클래스는 시간표에 과목을 추가하거나 제거하는 작업을 처리하는 ActionListener입니다.
  * 이 클래스는 사용자가 버튼을 클릭했을 때 발생하는 이벤트를 처리하여, 시간표에 과목을 추가하거나
@@ -11,17 +23,6 @@
  * </pre>
  * </p>
  */
-package function;
-
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import gui.Gui_Design;
-import data.Data_read;
-import javax.swing.*;
 
 public class Click_ActionListener implements ActionListener {
 

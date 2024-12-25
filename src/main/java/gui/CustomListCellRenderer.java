@@ -1,3 +1,8 @@
+package gui;
+
+import javax.swing.*;
+import java.awt.*;
+
 /**
  * CustomListCellRenderer 클래스는 JList의 항목을 커스터마이즈하여 렌더링하는 데 사용됩니다.
  * DefaultListCellRenderer를 확장하여 텍스트 정렬, 폰트, 여백, 배경색 및 글자색을 설정할 수 있습니다.
@@ -12,10 +17,6 @@
  * </pre>
  * </p>
  */
-package gui;
-
-import javax.swing.*;
-import java.awt.*;
 
 // 커스터마이즈된 렌더러 클래스
 class CustomListCellRenderer extends DefaultListCellRenderer {

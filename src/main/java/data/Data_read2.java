@@ -1,25 +1,3 @@
-/**
- * Data_read2 클래스는 교양 강의에 대한 CSV 파일을 읽고 데이터를 저장 및 반환하는 기능을 제공합니다.
- * 이 클래스는 CSV 파일에서 교과목, 교수, 시간, 장소, 학점, 영역에 대한 정보를 추출하고 이를 관리합니다.
- *
- * <p><b>주요 기능:</b>
- * <ul>
- * <li>CSV 파일에서 모든 데이터를 행 단위로 읽어와 저장</li>
- * <li>교과목 및 시간 정보를 저장하고 반환</li>
- * <li>교과목에 대한 상세 정보를 교과목명, 교수, 시간, 장소, 학점, 영역별로 반환</li>
- * </ul>
- * </p>
- *
- * <p><b>사용 예:</b>
- * <pre>
- * Data_read2 dataRead2 = new Data_read2();
- * List<String[]> rows = dataRead2.getRows(); // CSV 모든 행 반환
- * List<String> subjects = dataRead2.getSubjects(); // 교과목 리스트 반환
- * Map<String, String> subjectTimes = dataRead2.getSubjectTimes(); // 과목별 시간 정보 반환
- * Map<String, String[]> detailedInfo = dataRead2.getDetailedSubjectInfo(); // 과목별 상세 정보 반환
- * </pre>
- * </p>
- */
 package data;
 
 import com.opencsv.CSVReader;
@@ -32,18 +10,46 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Data_read2 클래스는 '교양 강의 데이터.csv' 파일을 읽고 데이터를 저장 및 반환하는 기능을 제공
+ *
+ * @author jiwoo-hongb(홍지우, jwhong48 @ gmail.com)
+ *
+ * @create 2024-12-24
+ * @lastModified 2024-12-26
+ *
+ * @changelog
+ * <ul>
+ *  <li>2024-12-24: 최초 생성 및 </li>
+ *  <li>2024-12-25: 교양과목 정보 제공을 위한 데이터 관리</li>
+ *  <li>2024-12-26: Javadoc 수정</li>
+ *  </ul>
+ *
+ * <p><b>주요 기능:</b>
+ * <ul>
+ * <li>CSV 파일에서 모든 데이터를 행 단위로 읽어와 저장</li>
+ * <li>교과목 및 시간 정보를 저장하고 반환</li>
+ * <li>교과목에 대한 상세 정보를 교과목명, 교수, 시간, 장소, 학점, 영역별로 반환</li>
+ * </ul>
+ * </p>
+ *
+ */
+
 public class Data_read2 {
     private final List<String[]> rows; // csv 데이터 전체 저장
     private final List<String> subjects; // 교과목 필드만 저장
     private final Map<String, String> subjectTimes; // 과목별 시간 데이터 매핑
 
     /**
-     * Data_read2 클래스의 생성자.
-     * 지정된 CSV 파일을 읽고 데이터를 저장합니다.
-     * 첫 번째 행(헤더)을 건너뛰고, 각 과목에 대한 시간 정보를 추출하여 저장합니다.
+     * <ul>
+     * <li>Data_read2 클래스의 생성자</li>
+     * <li>지정된 CSV 파일을 읽고 데이터를 저장</li>
+     * <li>첫 번째 행(헤더)을 건너뛰고, 각 과목에 대한 시간 정보를 추출하여 저장</li>
+     * </ul>
      *
      * @throws IllegalArgumentException "시간" 열이 없을 경우 발생
      */
+
     public Data_read2() {
         rows = new ArrayList<>();
         subjects = new ArrayList<>();
@@ -55,7 +61,7 @@ public class Data_read2 {
             boolean isFirst = true; // 첫 번째 줄은 헤더로 처리
             int timeIndex = -1; // "시간" 열의 인덱스
 
-            // 파일의 각 줄을 읽어온다.
+            // 파일의 각 줄을 읽어온다
             while ((nextLine = reader.readNext()) != null) {
                 if (isFirst) {
                     isFirst = false; // 첫 번째 줄은 헤더
@@ -91,42 +97,54 @@ public class Data_read2 {
     }
 
     /**
-     * CSV 파일에서 읽어온 모든 행을 반환합니다.
+     * <ul>
+     * <li>CSV 파일에서 읽어온 모든 행을 반환</li>
+     * </ul>
      *
      * @return CSV 파일의 모든 행을 담고 있는 리스트
      */
+
     public List<String[]> getRows() {
         return rows;
     }
 
     /**
-     * CSV 파일에서 교과목만 추출하여 리스트로 반환합니다.
+     * <ul>
+     * <li>CSV 파일에서 교과목만 추출하여 리스트로 반환</li>
+     * </ul>
      *
      * @return 교과목명만 담고 있는 리스트
      */
+
     public List<String> getSubjects() {
         return subjects;
     }
 
     /**
-     * 과목별 시간 정보를 반환합니다.
+     * <ul>
+     * <li>과목별 시간 정보를 반환</li>
+     * </ul>
      *
      * @return 과목명과 해당 시간 정보가 매핑된 맵
      */
+
     public Map<String, String> getSubjectTimes() {
         return subjectTimes;
     }
 
     /**
-     * 과목별 상세 정보를 반환합니다.
-     * 상세 정보에는 교과목명, 교수명, 시간, 장소, 학점, 영역이 포함됩니다.
+     * <ul>
+     * <li>과목별 상세 정보를 반환</li>
+     * <li>상세 정보에는 교과목명, 교수명, 시간, 장소, 학점, 영역이 포함</li>
+     * </ul>
      *
      * @return 각 과목에 대한 상세 정보가 담긴 맵
      */
+
     public Map<String, String[]> getDetailedSubjectInfo() {
         Map<String, String[]> detailedInfo = new HashMap<>();
         for (String[] row : rows) {
-            if (row.length >= 6) { // 최소 6개의 열이 있어야 함
+            if (row.length >= 6) {
                 String subject = row[0].trim();
                 detailedInfo.put(subject, new String[]{
                         row[0], // 교과목

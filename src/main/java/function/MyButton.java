@@ -1,3 +1,7 @@
+package function;
+
+import gui.RoundBtn;
+
 /**
  * MyButton 클래스는 커스터마이즈된 둥근 버튼 클래스입니다.
  * 이 클래스는 버튼 클릭 시 과목을 시간표에 추가하거나 제거하는 기능을 처리하며,
@@ -13,9 +17,6 @@
  * </pre>
  * </p>
  */
-package function;
-
-import gui.RoundBtn;
 
 public class MyButton extends RoundBtn {
 

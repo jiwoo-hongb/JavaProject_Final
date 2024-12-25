@@ -1,3 +1,11 @@
+package function;
+
+import data.Data_read;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 /**
  * TimeTable 클래스는 시간표 관리 기능을 제공하는 싱글톤 클래스입니다.
  * 과목을 시간표에 추가하거나 제거하고, 시간표를 출력하는 기능을 포함하고 있습니다.
@@ -19,13 +27,6 @@
  * </pre>
  * </p>
  */
-package function;
-
-import data.Data_read;
-
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 public class TimeTable {
 

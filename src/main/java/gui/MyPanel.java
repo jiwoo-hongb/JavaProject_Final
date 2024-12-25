@@ -1,3 +1,8 @@
+package gui;
+
+import javax.swing.*;
+import java.awt.*;
+
 /**
  * MyPanel 클래스는 기본 배경색을 설정한 JPanel을 확장한 클래스입니다.
  * 이 클래스는 Gui_Design 클래스에서 정의된 배경색을 사용하여,
@@ -12,10 +17,6 @@
  * </pre>
  * </p>
  */
-package gui;
-
-import javax.swing.*;
-import java.awt.*;
 
 public class MyPanel extends JPanel {
 

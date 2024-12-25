@@ -1,3 +1,8 @@
+package gui;
+
+import javax.swing.*;
+import java.awt.*;
+
 /**
  * CustomComboBoxRenderer 클래스는 JComboBox의 항목을 커스터마이징하여 렌더링하는 데 사용됩니다.
  * 이 클래스는 JLabel을 확장하고 ListCellRenderer<String> 인터페이스를 구현합니다.
@@ -14,10 +19,6 @@
  *
  * <p>디자인 색상은 외부 Gui_Design 클래스에서 정의된 값을 참조합니다.</p>
  */
-package gui;
-
-import javax.swing.*;
-import java.awt.*;
 
 class CustomComboBoxRenderer extends JLabel implements ListCellRenderer<String> {
 

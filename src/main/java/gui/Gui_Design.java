@@ -1,4 +1,7 @@
 package gui;
+
+import java.awt.*;
+
 /**
  * Gui_Design 클래스는 GUI 디자인에서 사용되는 색상을 정의하고 관리하는 역할을 합니다.
  * 이 클래스는 다양한 컴포넌트에 적용할 수 있는 배경색, 패널색, 버튼색 등을 제공합니다.
@@ -13,7 +16,6 @@ package gui;
  * </pre>
  * </p>
  */
-import java.awt.*;
 
 public class Gui_Design {
 

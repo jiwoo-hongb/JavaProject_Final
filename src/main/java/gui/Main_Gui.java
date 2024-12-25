@@ -1,7 +1,3 @@
-/**
- * Main_Gui는 시간표 마법사 애플리케이션의 주요 그래픽 사용자 인터페이스입니다.
- * 패널, 버튼, 라벨 등 GUI 구성 요소를 초기화하며, 애플리케이션의 다른 부분으로 이동할 수 있는 기능을 제공합니다.
- */
 package gui;
 
 import data.Data_read2;
@@ -13,8 +9,11 @@ import function.TimeTable;
 import function.TimeTable2;
 
 /**
- * Main_Gui는 시간표 마법사 애플리케이션의 메인 JFrame입니다.
+ * Main_Gui는 시간표 마법사 애플리케이션의 주요 그래픽 사용자 인터페이스입니다.
+ * 패널, 버튼, 라벨 등 GUI 구성 요소를 초기화하며, 애플리케이션의 다른 부분으로 이동할 수 있는 기능을 제공합니다.
+ *  * Main_Gui는 시간표 마법사 애플리케이션의 메인 JFrame입니다.
  */
+
 public class Main_Gui extends JFrame {
     private Gui_Design design = new Gui_Design();
     private MyButton myBtn = new MyButton();
