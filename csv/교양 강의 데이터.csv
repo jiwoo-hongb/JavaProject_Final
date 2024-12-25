@@ -54,7 +54,95 @@
 토익L/CⅡ,신광인,"화(3,4)", 13-103 ,2,일반영역
 토익R/CⅠ,함은경,"월(8,9)", 20-421 ,2,일반영역
 토익R/CⅠ,김미진,"수(7,8)", 09-316 ,2,일반영역
-토익R/CⅠ,김집,"목(3,4)", 09-310 ,2,일반영역
+토익R/CⅠ,김집,"목(3,4)", 09-310 ,2,일반영역import java.util.*;
+
+                                  public class TimeTable2 {
+
+                                      /**
+                                       * 추천 과목을 반환하는 메서드.
+                                       *
+                                       * @param timetable 사용자의 현재 시간표 (요일별, 시간별 과목 배열)
+                                       * @param dataReader 과목 및 시간 데이터를 읽어오는 객체
+                                       * @return 요일별 추천 과목 리스트
+                                       */
+                                      public static Map<String, List<String>> getRecommendations(String[][] timetable, Data_read2 dataReader) {
+                                          // LinkedHashMap을 사용하여 요일 순서 유지
+                                          Map<String, List<String>> recommendations = new LinkedHashMap<>();
+                                          Map<String, String> subjectTimes = dataReader.getSubjectTimes();
+
+                                          // 요일별 초기화
+                                          String[] days = {"월", "화", "수", "목", "금"};
+                                          for (String day : days) {
+                                              recommendations.put(day, new ArrayList<>());
+                                          }
+
+                                          // 각 과목을 시간표와 비교하여 추천 리스트에 추가
+                                          for (Map.Entry<String, String> entry : subjectTimes.entrySet()) {
+                                              String subject = entry.getKey();
+                                              String time = entry.getValue();
+
+                                              // 시간 정보를 파싱
+                                              String[] timeParts = time.split("\\(");
+                                              String day = timeParts[0]; // 요일
+                                              String[] periods = timeParts[1].replace(")", "").split(",");
+
+                                              if (recommendations.containsKey(day)) {
+                                                  boolean canAdd = true;
+
+                                                  // timetable과 충돌 체크
+                                                  for (String periodStr : periods) {
+                                                      try {
+                                                          int period = Integer.parseInt(periodStr) - 1;
+                                                          int dayIndex = convertDayToIndex(day);
+
+                                                          // **배열 범위 검사**
+                                                          if (dayIndex < 0 || dayIndex >= timetable.length || period < 0 || period >= timetable[0].length) {
+                                                              System.out.println("잘못된 시간 정보: " + subject + " - " + periodStr);
+                                                              canAdd = false;
+                                                              break;
+                                                          }
+
+                                                          // timetable에 이미 다른 과목이 있으면 추가 불가
+                                                          if (timetable[dayIndex][period] != null) {
+                                                              canAdd = false;
+                                                              break;
+                                                          }
+                                                      } catch (NumberFormatException e) {
+                                                          System.out.println("잘못된 시간 형식: " + subject + " - " + periodStr);
+                                                          canAdd = false;
+                                                          break;
+                                                      }
+                                                  }
+
+                                                  // timetable과 충돌이 없으면 추천 리스트에 추가
+                                                  if (canAdd) {
+                                                      recommendations.get(day).add(subject);
+                                                  }
+                                              }
+                                          }
+                                          return recommendations;
+                                      }
+
+                                      /**
+                                       * 요일을 배열 인덱스로 변환하는 메서드.
+                                       *
+                                       * @param day 요일 문자열
+                                       * @return 요일에 해당하는 배열 인덱스
+                                       */
+                                      private static int convertDayToIndex(String day) {
+                                          switch (day) {
+                                              case "월": return 0;
+                                              case "화": return 1;
+                                              case "수": return 2;
+                                              case "목": return 3;
+                                              case "금": return 4;
+                                              default:
+                                                  System.out.println("잘못된 요일: " + day);
+                                                  return -1; // 잘못된 요일은 -1 반환
+                                          }
+                                      }
+                                  }
+
 토익R/CⅠ,김집,"월(4,5)", 20-230 ,2,일반영역
 토익R/CⅡ,김집,"목(1,2)", 13-301,2,일반영역
 약과건강,윤지은,"화(3,4)", 13-401 ,2,제4영역:과학과기술
@@ -110,8 +198,6 @@ CLAP2,이종선,"금(2,3,5,6)", 42-207 ,3,제3영역:인간과사회
 사회과학글쓰기,유호근,"목(5,6)", 20-137 ,2,제3영역:인간과사회
 이공계를위한글쓰기,염효영,"목(8,9)", 09-307 ,2,제4영역:과학과기술
 금융자산관리의이해,곽세영,"월(1,2,3)", 13-303 ,3,일반영역
-RC재활필라테스,김민진,"월(11,12)", 08-420 ,2,일반영역
-RC자기계발과리더십,최금진,"화(11,12)", 43-011A,2,일반영역
 영화와사회,박인영,"목(8,9)", 13-101 ,2,제1영역:문화와예술
 영화로읽는문학,함은경,"금(3,4)", 13-201 ,2,제1영역:문화와예술
 현대매체철학의이해,김성일,"월(3,4)", 09-312 ,2,제3영역:인간과사회
@@ -145,5 +231,4 @@ CLAP3,이종선,"수(8,9)", 42-207 ,2,제3영역:인간과사회
 한국의민속과예술,소인호,"화(1,2)", 13-303 ,2,제1영역:문화와예술
 행복학개론,박준우,"금(1,2)", 13-501 ,2,제3영역:인간과사회
 ESG와공공담론,조한상,"월(3,4)", 13-102 ,2,제5영역:정치와경제
-RC실전동영상편집,홍민희,"목(11,12)", 31-213,2,일반영역
 충북특화산업의수출과세계화,이재영,"수(8,9)", 13-302,2,제5영역:정치와경제

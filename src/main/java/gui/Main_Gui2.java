@@ -1,7 +1,7 @@
 package gui;
 
-import data.Data_read2;
 import function.TimeTable2;
+import data.Data_read2;
 
 import javax.swing.*;
 import java.awt.*;
@@ -9,24 +9,70 @@ import java.util.List;
 import java.util.Map;
 
 public class Main_Gui2 extends JFrame {
-    public Main_Gui2(String[][] timetable) {
-        setTitle("추천 과목 리스트");
-        setSize(400, 600);
-        setLayout(new BorderLayout());
+    private JComboBox<String> dayComboBox;
+    private JList<String> subjectList;
+    private TimeTable2 timetable;
+    private Data_read2 dataReader; // Data_read2 참조 추가
+
+    public Main_Gui2(String[][] timetableArray, Data_read2 dataReader) {
+        this.dataReader = dataReader;
+
+        // GUI 초기화
+        setTitle("교양 추천 과목");
+        setSize(600, 400);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLayout(new BorderLayout());
 
-        Data_read2 dataReader = new Data_read2();
+        // 상단 패널: 요일 선택 콤보박스
+        JPanel topPanel = new JPanel();
+        topPanel.setLayout(new FlowLayout());
 
-        // 추천 과목 얻기
-        Map<String, List<String>> recommendations = TimeTable2.getRecommendations(timetable, dataReader);
+        JLabel label = new JLabel("요일 선택: ");
+        dayComboBox = new JComboBox<>(new String[]{"월", "화", "수", "목", "금"});
+        JButton showButton = new JButton("추천 과목 보기");
 
-        // 추천 과목 출력
-        JTextArea textArea = new JTextArea();
-        recommendations.forEach((day, subjects) -> {
-            textArea.append(day + "요일 추천 과목: " + subjects + "\n");
+        topPanel.add(label);
+        topPanel.add(dayComboBox);
+        topPanel.add(showButton);
+        add(topPanel, BorderLayout.NORTH);
+
+        // 중앙 패널: 추천 과목 표시 영역
+        subjectList = new JList<>();
+        JScrollPane scrollPane = new JScrollPane(subjectList);
+        add(scrollPane, BorderLayout.CENTER);
+
+        // 하단 패널: 이전 화면으로 돌아가는 버튼
+        JPanel bottomPanel = new JPanel();
+        bottomPanel.setLayout(new FlowLayout());
+        JButton backButton = new JButton("이전 화면으로");
+        bottomPanel.add(backButton);
+        add(bottomPanel, BorderLayout.SOUTH);
+
+        // 버튼 클릭 이벤트 처리
+        showButton.addActionListener(e -> {
+            String selectedDay = (String) dayComboBox.getSelectedItem();
+            showRecommendations(timetableArray, selectedDay);
         });
 
-        add(new JScrollPane(textArea), BorderLayout.CENTER);
-        setVisible(true);
+        // 이전 화면으로 돌아가는 버튼 클릭 이벤트
+        backButton.addActionListener(e -> {
+            setVisible(false);
+            new Main_Gui().setVisible(true); // Main_Gui 화면 표시
+        });
+    }
+
+    // 추천 과목을 리스트에 표시하는 메서드
+    private void showRecommendations(String[][] timetableArray, String day) {
+        // TimeTable2에서 추천 과목 데이터 가져오기
+        Map<String, List<String>> recommendations = TimeTable2.getRecommendations(timetableArray, dataReader);
+
+        // 선택한 요일에 해당하는 추천 과목 가져오기
+        List<String> subjects = recommendations.get(day);
+
+        if (subjects != null && !subjects.isEmpty()) {
+            subjectList.setListData(subjects.toArray(new String[0]));
+        } else {
+            subjectList.setListData(new String[]{"추천 과목이 없습니다."});
+        }
     }
 }

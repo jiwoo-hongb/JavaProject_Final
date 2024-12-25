@@ -1,10 +1,12 @@
 package gui;
 
+import data.Data_read2;
 import function.MyButton;
 import javax.swing.*;
 import java.awt.*;
 import function.MyButton;
 import function.TimeTable;
+import function.TimeTable2;
 
 public class Main_Gui extends JFrame {
     Gui_Design design = new Gui_Design();
@@ -151,7 +153,8 @@ public class Main_Gui extends JFrame {
         btn_next.addActionListener(e -> {
             setVisible(false); // 현재 프레임(Main_Gui) 비가시화
             String[][] timetable = TimeTable.getInstance().getTimetable(); // 시간표 인스턴스 가져오기
-            new Main_Gui2(timetable).setVisible(true); // Main_Gui2 실행
+            Data_read2 dataReader = new Data_read2(); // Data_read2 객체 생성
+            new Main_Gui2(timetable, dataReader).setVisible(true); // Main_Gui2 실행
         });
 
         panel.add(btn_next);
