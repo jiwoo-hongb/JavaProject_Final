@@ -1,3 +1,20 @@
+/**
+ * Main_Gui2 클래스는 시간표 마법사의 메인 GUI를 구현합니다.
+ * 이 클래스는 사용자에게 요일을 선택하고, 해당 요일에 추천된 과목을 표시하며,
+ * 선택된 과목의 세부 정보를 팝업으로 보여주는 기능을 제공합니다.
+ *
+ * <p>이 GUI는 JComboBox를 사용하여 요일을 선택하고, JList를 사용하여 추천 과목을 나열합니다.
+ * 각 과목을 선택하면 해당 과목의 세부 정보를 팝업으로 표시합니다.</p>
+ *
+ * <p><b>사용 예:</b>
+ * <pre>
+ * String[][] timetable = ...; // 시간표 데이터
+ * Data_read2 dataReader = ...; // 과목 정보 읽기 객체
+ * Main_Gui2 gui = new Main_Gui2(timetable, dataReader);
+ * gui.setVisible(true);
+ * </pre>
+ * </p>
+ */
 package gui;
 
 import function.MyButton;
@@ -12,12 +29,27 @@ import java.util.Map;
 
 public class Main_Gui2 extends JFrame {
 
+    /** 요일 선택 콤보박스 */
     private JComboBox<String> dayComboBox;
+
+    /** 추천 과목을 표시할 JList */
     private JList<String> subjectList;
-    private Data_read2 dataReader; // Data_read2 참조 추가
+
+    /** 데이터 읽기 객체 */
+    private Data_read2 dataReader;
+
+    /** 시간표 데이터 */
     private String[][] timetableArray;
+
+    /** 디자인 색상 객체 */
     private Gui_Design design = new Gui_Design();
 
+    /**
+     * Main_Gui2 클래스의 생성자로, GUI 초기화를 수행합니다.
+     *
+     * @param timetableArray 시간표 데이터
+     * @param dataReader 과목 정보 읽기 객체
+     */
     public Main_Gui2(String[][] timetableArray, Data_read2 dataReader) {
         this.dataReader = dataReader;
         this.timetableArray = timetableArray;
@@ -32,6 +64,10 @@ public class Main_Gui2 extends JFrame {
         showCenter();
     }
 
+    /**
+     * 상단 패널을 구성하는 메서드입니다.
+     * 요일 선택 콤보박스와 '보기' 버튼을 배치합니다.
+     */
     void showNorth() {
         // 상단 패널: 요일 선택 콤보박스
         MyPanel panel = new MyPanel();
@@ -68,6 +104,10 @@ public class Main_Gui2 extends JFrame {
         add(panel, BorderLayout.NORTH);
     }
 
+    /**
+     * 중앙 패널을 구성하는 메서드입니다.
+     * 추천 과목 목록을 표시하는 JList와 JScrollPane을 배치합니다.
+     */
     void showCenter() {
         // 추천 과목 영역 패널
         MyPanel subjectPanel = new MyPanel();
@@ -96,8 +136,11 @@ public class Main_Gui2 extends JFrame {
         add(subjectPanel, BorderLayout.CENTER);
     }
 
-
-    // 추천 과목을 리스트에 표시하는 메서드
+    /**
+     * 선택된 요일에 대해 추천 과목을 JList에 표시하는 메서드입니다.
+     *
+     * @param selectedDay 선택된 요일
+     */
     private void showRecommendations(String selectedDay) {
         // 추천 과목 가져오기
         Map<String, List<String>> recommendations = TimeTable2.getRecommendationsRefactored(timetableArray, dataReader);
@@ -113,7 +156,11 @@ public class Main_Gui2 extends JFrame {
         }
     }
 
-    // 선택한 과목의 정보를 표시하는 메서드
+    /**
+     * 선택된 과목의 세부 정보를 팝업으로 표시하는 메서드입니다.
+     *
+     * @param subject 선택된 과목
+     */
     private void showSubjectDetails(String subject) {
         // 과목 정보 가져오기
         Map<String, String[]> detailedInfo = dataReader.getDetailedSubjectInfo();
@@ -121,7 +168,6 @@ public class Main_Gui2 extends JFrame {
 
         if (info != null) {
             // 팝업으로 과목 정보를 표시
-            // SubjectInfoPopup.showSubjectInfo(parent, subjectName, professor, time, location, credits, category)
             SubjectInfoPopup.showSubjectInfo(
                     this,  // 부모 컴포넌트 (Main_Gui2 인스턴스를 전달)
                     subject,  // 교과목 이름
