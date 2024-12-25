@@ -1,5 +1,6 @@
 package gui;
 
+import function.MyButton;
 import function.TimeTable2;
 import data.Data_read2;
 
@@ -24,12 +25,12 @@ public class Main_Gui2 extends JFrame {
         setLayout(new BorderLayout());
 
         // 상단 패널: 요일 선택 콤보박스
-        JPanel topPanel = new JPanel();
+        MyPanel topPanel = new MyPanel();
         topPanel.setLayout(new FlowLayout());
 
         JLabel label = new JLabel("요일 선택: ");
         dayComboBox = new JComboBox<>(new String[]{"월", "화", "수", "목", "금"});
-        JButton showButton = new JButton("추천 과목 보기");
+        MyButton showButton = new MyButton("추천 과목 보기");
 
         topPanel.add(label);
         topPanel.add(dayComboBox);
@@ -42,9 +43,9 @@ public class Main_Gui2 extends JFrame {
         add(scrollPane, BorderLayout.CENTER);
 
         // 하단 패널: 이전 화면으로 돌아가는 버튼
-        JPanel bottomPanel = new JPanel();
+        MyPanel bottomPanel = new MyPanel();
         bottomPanel.setLayout(new FlowLayout());
-        JButton backButton = new JButton("이전 화면으로");
+        MyButton backButton = new MyButton("이전 화면으로");
         bottomPanel.add(backButton);
         add(bottomPanel, BorderLayout.SOUTH);
 
