@@ -60,11 +60,15 @@ public class Main_Gui2 extends JFrame {
 
     void showCenter() {
         // 추천 과목 영역 패널
-        JPanel subjectPanel = new JPanel();
+        MyPanel subjectPanel = new MyPanel();
         subjectPanel.setLayout(new BorderLayout());
 
         subjectList = new JList<>();
         subjectList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+
+        // 커스터마이즈된 렌더러 설정
+        subjectList.setCellRenderer(new CustomListCellRenderer());
+        subjectList.setBackground(design.getBackgroundColor()); // 연한 회색 배경
 
         // 리스트 선택 이벤트 추가
         subjectList.addListSelectionListener(e -> {
@@ -77,10 +81,11 @@ public class Main_Gui2 extends JFrame {
         });
 
         JScrollPane scrollPane = new JScrollPane(subjectList);
-        subjectPanel.add(scrollPane, BorderLayout.CENTER);
 
+        subjectPanel.add(scrollPane, BorderLayout.CENTER);
         add(subjectPanel, BorderLayout.CENTER);
     }
+
 
     // 추천 과목을 리스트에 표시하는 메서드
     private void showRecommendations(String selectedDay) {
