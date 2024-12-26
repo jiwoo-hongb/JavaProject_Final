@@ -9,9 +9,28 @@ import function.TimeTable;
 import function.TimeTable2;
 
 /**
- * Main_Gui는 시간표 마법사 애플리케이션의 주요 그래픽 사용자 인터페이스입니다.
- * 패널, 버튼, 라벨 등 GUI 구성 요소를 초기화하며, 애플리케이션의 다른 부분으로 이동할 수 있는 기능을 제공합니다.
- *  * Main_Gui는 시간표 마법사 애플리케이션의 메인 JFrame입니다.
+ * Main_Gui는 시간표 마법사 애플리케이션의 주요 그래픽 사용자 인터페이스(전공, 교필 선택)
+ *
+ * @author jiwoo-hongb(홍지우, jwhong48 @ gmail.com)
+ *
+ * @create 2024-11-10
+ * @lastModified 2024-12-26
+ *
+ * @changelog
+ * <ul>
+ *  <li>2024-11-10: 최초 생성 및 초기 레이아웃 설정</li>
+ *  <li>2024-11-11: 레이아웃 변경 및 클릭 작동 클래스와 연동</li>
+ *  <li>2024-11-12: 데이터 읽기 시도</li>
+ *  <li>2024-11-14 ~ 2024-12-25: 오류 수정</li>
+ *  <li>2024-12-26: Javadoc 수정</li>
+ *  </ul>
+ *
+ * <p><b>주요 기능:</b>
+ * <ul>
+ * <li>패널, 버튼, 라벨 등 GUI 구성 요소를 초기화</li>
+ * <li>애플리케이션의 다른 부분으로 이동할 수 있는 기능 제공</li>
+ * </ul>
+ * </p>
  */
 
 public class Main_Gui extends JFrame {
@@ -19,8 +38,10 @@ public class Main_Gui extends JFrame {
     private MyButton myBtn = new MyButton();
 
     /**
-     * Main_Gui 프레임을 생성합니다.
-     * 프레임 속성을 설정하고 GUI 레이아웃을 초기화합니다.
+     * <ul>
+     * <li>Main_Gui 프레임을 생성</li>
+     * <li>프레임 속성을 설정하고 GUI 레이아웃을 초기화</li>
+     * </ul>
      */
     public Main_Gui() {
         setTitle("시간표 마법사 🌟");
@@ -36,8 +57,10 @@ public class Main_Gui extends JFrame {
     }
 
     /**
-     * GUI의 상단(North) 섹션을 생성하고 표시합니다.
-     * 이 섹션에는 헤더와 학점 정보가 포함됩니다.
+     * <ul>
+     * <li>GUI의 상단(North) 섹션을 생성하고 표시</li>
+     * <li>이 섹션에는 헤더와 학점 정보가 포함</li>
+     * </ul>
      */
     private void showNorth() {
         MyPanel panel = new MyPanel();
@@ -60,9 +83,9 @@ public class Main_Gui extends JFrame {
     }
 
     /**
-     * 버튼의 스타일과 속성을 설정합니다.
+     * <ul><li>버튼의 스타일과 속성을 설정</li></ul>
      *
-     * @param button 스타일이 설정될 버튼.
+     * @param button 스타일이 설정될 버튼
      */
     private void setupButton(MyButton button) {
         button.setBackground(design.getBtnColor());
@@ -70,8 +93,10 @@ public class Main_Gui extends JFrame {
     }
 
     /**
-     * GUI의 중앙(main content) 섹션을 생성하고 표시합니다.
-     * 이 섹션에는 전공 및 교양 과목 버튼이 포함됩니다.
+     * <ul>
+     * <li>GUI의 중앙(main content) 섹션을 생성하고 표시</li>
+     * <li>이 섹션에는 전공 및 교양 과목 버튼이 포함</li>
+     * </ul>
      */
     private void showCenter() {
         MyPanel panel1 = new MyPanel();
@@ -163,8 +188,10 @@ public class Main_Gui extends JFrame {
     }
 
     /**
-     * GUI의 하단(South) 섹션을 생성하고 표시합니다.
-     * 이 섹션에는 네비게이션 버튼이 포함됩니다.
+     * <ul>
+     * <li>GUI의 하단(South) 섹션을 생성하고 표시</li>
+     * <li>이 섹션에는 네비게이션 버튼이 포함</li>
+     * </ul>
      */
     private void showSouth() {
         MyPanel panel = new MyPanel();
@@ -187,7 +214,7 @@ public class Main_Gui extends JFrame {
     }
 
     /**
-     * 애플리케이션을 실행하는 메인 메서드입니다.
+     * <ul><li>애플리케이션을 실행하는 메인 메서드</li></ul>
      *
      * @param args 커맨드라인 인수 (사용되지 않음).
      */

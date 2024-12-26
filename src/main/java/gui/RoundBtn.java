@@ -6,25 +6,33 @@ import javax.swing.text.View;
 import java.awt.*;
 
 /**
- * RoundBtn 클래스는 둥근 모서리를 가진 커스터마이즈된 JButton입니다.
- * 이 클래스는 버튼의 배경을 둥글게 그리며, 버튼에 텍스트나 HTML을 렌더링할 수 있도록 합니다.
- * 버튼이 선택되었거나 마우스를 올렸을 때 색상이 달라지는 효과도 제공합니다.
+ * RoundBtn 클래스는 둥근 모서리를 가진 커스터마이즈된 JButton
  *
- * <p>RoundBtn은 기본적으로 둥근 배경을 그리고, 텍스트나 HTML을 중앙에 배치하여 버튼의 텍스트를 표시합니다.</p>
+ * @author jiwoo-hongb(홍지우, jwhong48 @ gmail.com)
  *
- * <p><b>사용 예:</b>
- * <pre>
- * RoundBtn button = new RoundBtn("클릭");
- * button.setBackground(Color.BLUE);
- * </pre>
+ * @create 2024-11-18
+ * @lastModified 2024-12-26
+ *
+ * @changelog
+ * <ul>
+ *  <li>2024-11-18: 최초 생성</li>
+ *  <li>2024-12-26: Javadoc 수정</li>
+ *  </ul>
+ *
+ * <p><b>주요 기능:</b>
+ * <ul>
+ * <li>버튼의 배경을 둥글게 그리며, 버튼에 텍스트나 HTML을 렌더링</li>
+ * <li>버튼이 선택되었거나 마우스를 올렸을 때 색상이 달라지는 효과도 제공</li>
+ * </ul>
  * </p>
  */
-
 public class RoundBtn extends JButton {
 
     /**
-     * 버튼을 그릴 때 호출되는 메서드입니다. 버튼의 배경을 둥근 모서리로 그리며, 
-     * 텍스트가 있을 경우 중앙에 위치시킵니다.
+     * <ul>
+     * <li>버튼을 그릴 때 호출(둥글게)</li>
+     * <li>텍스트가 있을 경우 중앙에 위치시킴</li>
+     * </ul>
      *
      * @param g 그래픽 객체
      */
@@ -78,7 +86,10 @@ public class RoundBtn extends JButton {
     }
 
     /**
-     * 기본 생성자입니다. 버튼을 생성하고 기본 설정을 적용합니다.
+     * <ul>
+     * <li>기본 생성자</li>
+     * <li>버튼을 생성하고 기본 설정을 적용</li>
+     * </ul>
      */
     public RoundBtn() {
         super();
@@ -86,7 +97,7 @@ public class RoundBtn extends JButton {
     }
 
     /**
-     * 텍스트를 포함하는 RoundBtn을 생성합니다.
+     * <ul><li>텍스트를 포함하는 RoundBtn을 생성</li></ul>
      *
      * @param text 버튼에 표시할 텍스트
      */
@@ -96,7 +107,7 @@ public class RoundBtn extends JButton {
     }
 
     /**
-     * Action 객체를 사용하여 RoundBtn을 생성합니다.
+     * <ul><li>Action 객체를 사용하여 RoundBtn을 생성</li></ul>
      *
      * @param action 버튼에 대한 Action 객체
      */
@@ -106,7 +117,7 @@ public class RoundBtn extends JButton {
     }
 
     /**
-     * 아이콘을 포함하는 RoundBtn을 생성합니다.
+     * <ul><li>아이콘을 포함하는 RoundBtn을 생성</li></ul>
      *
      * @param icon 버튼에 표시할 아이콘
      */
@@ -116,7 +127,7 @@ public class RoundBtn extends JButton {
     }
 
     /**
-     * 텍스트와 아이콘을 모두 포함하는 RoundBtn을 생성합니다.
+     * <ul><li>텍스트와 아이콘을 모두 포함하는 RoundBtn을 생성</li></ul>
      *
      * @param text 버튼에 표시할 텍스트
      * @param icon 버튼에 표시할 아이콘
@@ -127,8 +138,10 @@ public class RoundBtn extends JButton {
     }
 
     /**
-     * 버튼의 스타일을 설정하는 메서드입니다.
-     * 버튼에 테두리 색을 제거하고, 배경을 투명하게 설정합니다.
+     * <ul>
+     * <li>버튼의 스타일을 설정하는 메서드</li>
+     * <li>버튼에 테두리 색을 제거하고, 배경을 투명하게 설정</li>
+     * </ul>
      */
     protected void decorate() {
         setBorderPainted(false);  // 테두리 색 없애기

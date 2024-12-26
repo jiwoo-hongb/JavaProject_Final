@@ -4,28 +4,38 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
- * CustomListCellRenderer 클래스는 JList의 항목을 커스터마이즈하여 렌더링하는 데 사용됩니다.
- * DefaultListCellRenderer를 확장하여 텍스트 정렬, 폰트, 여백, 배경색 및 글자색을 설정할 수 있습니다.
+ * CustomListCellRenderer 클래스는 JList의 항목을 커스터마이즈하여 렌더링하는 데 사용
  *
- * <p>이 클래스는 선택된 항목과 비선택 상태의 항목을 다르게 렌더링하며,
- * Gui_Design 클래스를 사용하여 디자인 색상을 참조합니다.</p>
+ * @author jiwoo-hongb(홍지우, jwhong48 @ gmail.com)
  *
- * <p><b>사용 예:</b>
- * <pre>
- * JList<String> list = new JList<>(new String[] {"항목1", "항목2", "항목3"});
- * list.setCellRenderer(new CustomListCellRenderer());
- * </pre>
+ * @create 2024-12-25
+ * @lastModified 2024-12-26
+ *
+ * @changelog
+ * <ul>
+ * <li>2024-12-25: 최초 생성</li>
+ * <li>2024-12-26: Javadoc 수정</li>
+ * </ul>
+ *
+ * <p><b>주요 기능:</b>
+ * <ul>
+ * <li>DefaultListCellRenderer를 확장하여 텍스트 정렬, 폰트, 여백, 배경색 및 글자색을 설정 가능</li>
+ * </ul>
  * </p>
+ *
+ * @see <a href="https://stackoverflow.com/questions/18896345/writing-a-custom-listcellrenderer">CustomListCellRenderer 활용 참고</a>
  */
 
 // 커스터마이즈된 렌더러 클래스
 class CustomListCellRenderer extends DefaultListCellRenderer {
 
-    /** Gui_Design 인스턴스를 생성하여 색상 설정을 참조합니다. */
+    /**
+     * <ul><li>Gui_Design 인스턴스를 생성하여 색상 설정을 참조</li></ul>
+     */
     Gui_Design design = new Gui_Design();
 
     /**
-     * 리스트 항목의 렌더링을 처리하는 메서드입니다.
+     * <ul><li>리스트 항목의 렌더링을 처리하는 메서드</li></ul>
      *
      * @param list        JList 컴포넌트
      * @param value       렌더링할 항목의 값

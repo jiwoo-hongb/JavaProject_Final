@@ -11,42 +11,59 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Main_Gui2 클래스는 시간표 마법사의 메인 GUI를 구현합니다.
- * 이 클래스는 사용자에게 요일을 선택하고, 해당 요일에 추천된 과목을 표시하며,
- * 선택된 과목의 세부 정보를 팝업으로 보여주는 기능을 제공합니다.
+ * Main_Gui2 클래스는 시간표 마법사의 메인 GUI를 구현(교양추천)
  *
- * <p>이 GUI는 JComboBox를 사용하여 요일을 선택하고, JList를 사용하여 추천 과목을 나열합니다.
- * 각 과목을 선택하면 해당 과목의 세부 정보를 팝업으로 표시합니다.</p>
+ * @author jiwoo-hongb(홍지우, jwhong48 @ gmail.com)
  *
- * <p><b>사용 예:</b>
- * <pre>
- * String[][] timetable = ...; // 시간표 데이터
- * Data_read2 dataReader = ...; // 과목 정보 읽기 객체
- * Main_Gui2 gui = new Main_Gui2(timetable, dataReader);
- * gui.setVisible(true);
- * </pre>
+ * @create 2024-11-26
+ * @lastModified 2024-12-26
+ *
+ * @changelog
+ * <ul>
+ *  <li>2024-11-26: 최초 생성</li>
+ *  <li>2024-11-28: 추천교양과목 보여줄 수 있도록 초기 레이아웃 구성</li>
+ *  <li>2024-12-23: Main_Gui에서 넘어갈 수 있도록 수정</li>
+ *  <li>2024-12-24: 오류 수정 및 디자인 수정</li>
+ *  <li>2024-12-26: Javadoc 수정</li>
+ *  </ul>
+ *
+ * <p><b>주요 기능:</b>
+ * <ul>
+ * <li>알고자 하는 요일을 선택하고, 해당 요일에 추천된 과목을 표시</li>
+ * <li>추천 교양 과목을 선택할 시 해당 과목의 세부 정보를 팝업으로 보여주는 기능을 제공</li>
+ * </ul>
  * </p>
  */
 
 public class Main_Gui2 extends JFrame {
 
-    /** 요일 선택 콤보박스 */
+    /**
+     * <ul><li>요일 선택 콤보박스</li></ul>
+     */
     private JComboBox<String> dayComboBox;
 
-    /** 추천 과목을 표시할 JList */
+    /**
+     * <ul><li>추천 과목을 표시할 JList</li></ul>
+     */
     private JList<String> subjectList;
 
-    /** 데이터 읽기 객체 */
+    /**
+     * <ul><li>데이터 읽기 객체</li></ul>
+     */
     private Data_read2 dataReader;
 
-    /** 시간표 데이터 */
+    /**
+     * <ul><li>시간표 데이터</li></ul>
+     */
     private String[][] timetableArray;
 
-    /** 디자인 색상 객체 */
+    /**
+     * <ul><li>디자인 색상 객체</li></ul>
+     */
     private Gui_Design design = new Gui_Design();
 
     /**
-     * Main_Gui2 클래스의 생성자로, GUI 초기화를 수행합니다.
+     * <ul><li>Main_Gui2 클래스의 생성자로, GUI 초기화를 수행</li></ul>
      *
      * @param timetableArray 시간표 데이터
      * @param dataReader 과목 정보 읽기 객체
@@ -66,8 +83,10 @@ public class Main_Gui2 extends JFrame {
     }
 
     /**
-     * 상단 패널을 구성하는 메서드입니다.
-     * 요일 선택 콤보박스와 '보기' 버튼을 배치합니다.
+     * <ul>
+     * <li>상단 패널을 구성하는 메서드</li>
+     * <li>요일 선택 콤보박스와 '보기' 버튼을 배치</li>
+     * </ul>
      */
     void showNorth() {
         // 상단 패널: 요일 선택 콤보박스
@@ -106,8 +125,10 @@ public class Main_Gui2 extends JFrame {
     }
 
     /**
-     * 중앙 패널을 구성하는 메서드입니다.
-     * 추천 과목 목록을 표시하는 JList와 JScrollPane을 배치합니다.
+     * <ul>
+     * <li>중앙 패널을 구성하는 메서드</li>
+     * <li>추천 과목 목록을 표시하는 JList와 JScrollPane을 배치</li>
+     * </ul>
      */
     void showCenter() {
         // 추천 과목 영역 패널
@@ -138,7 +159,7 @@ public class Main_Gui2 extends JFrame {
     }
 
     /**
-     * 선택된 요일에 대해 추천 과목을 JList에 표시하는 메서드입니다.
+     * <ul><li>선택된 요일에 대해 추천 과목을 JList에 표시하는 메서드</li></ul>
      *
      * @param selectedDay 선택된 요일
      */
@@ -158,7 +179,7 @@ public class Main_Gui2 extends JFrame {
     }
 
     /**
-     * 선택된 과목의 세부 정보를 팝업으로 표시하는 메서드입니다.
+     * <ul><li>선택된 과목의 세부 정보를 팝업으로 표시하는 메서드</li></ul>
      *
      * @param subject 선택된 과목
      */
