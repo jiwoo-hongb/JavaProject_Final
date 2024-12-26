@@ -34,7 +34,6 @@ import java.util.List;
  *
  * @see <a href="https://gksdudrb922.tistory.com/191">OpenCsv 활용</a>
  */
-
 public class Data_read {
     List<String[]> rows; // csv 데이터 전체 저장
     List<String> subjects; // 교과목 필드만 저장
@@ -46,7 +45,6 @@ public class Data_read {
      * <li>첫 번째 행(헤더)은 건너뛰고 그 이후의 데이터를 rows와 subjects에 저장</li>
      * </ul>
      */
-
     public Data_read() {
         rows = new ArrayList<>();
         subjects = new ArrayList<>();
@@ -79,7 +77,6 @@ public class Data_read {
      * </ul>
      * @return CSV 파일의 모든 행을 담고 있는 리스트
      */
-
     public List<String[]> getRows() {
         return rows;
     }
@@ -91,7 +88,6 @@ public class Data_read {
      *
      * @return 교과목명만 담고 있는 리스트
      */
-
     public List<String> getSubjects() {
         return subjects;
     }

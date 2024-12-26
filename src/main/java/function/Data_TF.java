@@ -4,27 +4,40 @@ import java.util.List;
 import data.Data_read;
 
 /**
- * Data_TF 클래스는 교과목 데이터를 처리하는 클래스입니다.
- * 이 클래스는 Data_read 객체를 통해 교과목 데이터를 로드하고, 주어진 버튼 텍스트와 교과목 목록을 비교하는 기능을 제공합니다.
+ * Data_TF 클래스는 교과목 데이터를 처리하는 클래스
  *
- * <p>주로 시간표에 과목을 추가할 때, 버튼 텍스트가 유효한 교과목인지 확인하는 용도로 사용됩니다.</p>
+ * @author jiwoo-hongb(홍지우, jwhong48 @ gmail.com)
  *
- * <p><b>사용 예:</b>
- * <pre>
- * Data_TF dataTF = new Data_TF();
- * boolean isMatched = dataTF.isSubjectMatched("수학");
- * </pre>
+ * @create 2024-11-12
+ * @lastModified 2024-12-26
+ *
+ * @changelog
+ * <ul>
+ *  <li>2024-11-19: 최초 생성</li>
+ *  <li>2024-11-26: 전공 및 교필 데이터를 처리하기 위한 메서드 추가</li>
+ *  <li>2024-12-25: Javadoc 작성</li>
+ *  <li>2024-12-26: Javadoc 최종 수정</li>
+ *  </ul>
+ *
+ * <p><b>주요 기능:</b>
+ * <ul>
+ * <li>Data_read 객체를 통해 교과목 데이터를 로드</li>
+ * <li>주어진 버튼 텍스트와 교과목 목록을 비교하는 기능을 제공</li>
+ * </ul>
  * </p>
  */
-
 public class Data_TF {
 
-    /** 교과목 목록 */
+    /**
+     * <ul><li>교과목 목록 </li></ul>
+     */
     private List<String> subjects;
 
     /**
-     * Data_TF 클래스의 생성자입니다.
-     * Data_read 객체를 사용하여 교과목 데이터를 로드합니다.
+     * <ul>
+     * <li>Data_TF 클래스의 생성자</li>
+     * <li>Data_read 객체를 사용하여 교과목 데이터를 로드</li>
+     * </ul>
      */
     public Data_TF() {
         // Data_read를 통해 교과목 데이터 로드
@@ -33,11 +46,14 @@ public class Data_TF {
     }
 
     /**
-     * 주어진 버튼 텍스트가 교과목 목록에 포함되어 있는지 확인하는 메서드입니다.
+     * <ul>
+     * <li>주어진 버튼 텍스트가 교과목 목록에 포함되어 있는지 확인하는 메서드</li>
+     * </ul>
      *
      * @param buttonText 버튼 텍스트
      * @return 주어진 텍스트가 교과목 목록에 포함되면 true, 그렇지 않으면 false
      */
+
     public boolean isSubjectMatched(String buttonText) {
         return subjects.contains(buttonText.trim());
     }

@@ -34,7 +34,6 @@ import java.util.Map;
  * </p>
  *
  */
-
 public class Data_read2 {
     private final List<String[]> rows; // csv 데이터 전체 저장
     private final List<String> subjects; // 교과목 필드만 저장
@@ -49,7 +48,6 @@ public class Data_read2 {
      *
      * @throws IllegalArgumentException "시간" 열이 없을 경우 발생
      */
-
     public Data_read2() {
         rows = new ArrayList<>();
         subjects = new ArrayList<>();
@@ -103,7 +101,6 @@ public class Data_read2 {
      *
      * @return CSV 파일의 모든 행을 담고 있는 리스트
      */
-
     public List<String[]> getRows() {
         return rows;
     }
@@ -115,7 +112,6 @@ public class Data_read2 {
      *
      * @return 교과목명만 담고 있는 리스트
      */
-
     public List<String> getSubjects() {
         return subjects;
     }
@@ -127,7 +123,6 @@ public class Data_read2 {
      *
      * @return 과목명과 해당 시간 정보가 매핑된 맵
      */
-
     public Map<String, String> getSubjectTimes() {
         return subjectTimes;
     }
@@ -140,7 +135,6 @@ public class Data_read2 {
      *
      * @return 각 과목에 대한 상세 정보가 담긴 맵
      */
-
     public Map<String, String[]> getDetailedSubjectInfo() {
         Map<String, String[]> detailedInfo = new HashMap<>();
         for (String[] row : rows) {

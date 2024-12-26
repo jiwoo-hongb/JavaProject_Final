@@ -6,26 +6,40 @@ import gui.Gui_Design;
 import gui.RoundPanel;
 
 /**
- * SubjectInfoPopup 클래스는 과목 정보를 팝업 창으로 표시하는 기능을 제공합니다.
- * 사용자가 과목을 선택하면 해당 과목에 대한 상세 정보를 팝업으로 띄워줍니다.
+ * SubjectInfoPopup 클래스는 과목 정보를 팝업 창으로 표시하는 기능을 제공
  *
- * <p>이 팝업은 과목명, 교수명, 시간, 장소, 학점, 영역을 포함하여 과목에 대한 세부 정보를 보여줍니다.</p>
+ * @author jiwoo-hongb(홍지우, jwhong48 @ gmail.com)
  *
- * <p><b>사용 예:</b>
- * <pre>
- * SubjectInfoPopup.showSubjectInfo(parent, "수학", "홍길동", "월 10:00", "101호", "3", "전공");
- * </pre>
+ * @create 2024-12-25
+ * @lastModified 2024-12-26
+ *
+ * @changelog
+ * <ul>
+ *  <li>2024-12-25: 최초 생성</li>
+ *  <li>2024-12-25: 추천된 교양과목 클릭시 해당 과목 정보 보여주는 기능 추가</li>
+ *  <li>2024-12-25: 디자인 수정 및 오류</li>
+ *  <li>2024-12-26: Javadoc 수정</li>
+ *  </ul>
+ *
+ * <p><b>주요 기능:</b>
+ * <ul>
+ * <li>사용자가 과목을 선택하면 해당 과목에 대한 상세 정보를 팝업으로 제공</li>
+ * <li>제공되는 정보는 과목명, 교수명, 시간, 장소, 학점, 영역</li>
+ * </ul>
  * </p>
  */
-
 public class SubjectInfoPopup {
 
-    /** 디자인을 위한 Gui_Design 객체 */
+    /**
+     * <ul><li>디자인을 위한 Gui_Design 객체</li></ul>
+     */
     static Gui_Design design = new Gui_Design();
 
     /**
-     * 과목 정보를 팝업 창으로 표시합니다.
-     * 주어진 과목명, 교수명, 시간, 장소, 학점, 영역에 대한 정보를 포함하여 팝업을 생성합니다.
+     * <ul>
+     * <li>과목 정보를 팝업 창으로 표시</li>
+     * <li>주어진 과목명, 교수명, 시간, 장소, 학점, 영역에 대한 정보를 포함하여 팝업을 생성</li>
+     * </ul>
      *
      * @param parent 팝업 창의 부모 컴포넌트
      * @param subjectName 과목명
@@ -92,14 +106,6 @@ public class SubjectInfoPopup {
         JLabel categoryLabel = new JLabel("영역: " + category);
         categoryLabel.setForeground(Color.WHITE);
         categoryLabel.setFont(new Font("Pretendard", Font.BOLD, 10));
-//
-//        subjectLabel.setBackground(Color.white);
-//        professorLabel.setBackground(Color.white);
-//        timeLabel.setBackground(Color.white);
-//        locationLabel.setBackground(Color.white);
-//        creditsLabel.setBackground(Color.white);
-//        categoryLabel.setOpaque(true);
-//        categoryLabel.setBackground(Color.white);
         // JLabel 추가
 //        panel.add(Box.createVerticalStrut(10));
         panel.add(subjectLabel);

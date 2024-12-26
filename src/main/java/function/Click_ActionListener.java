@@ -12,54 +12,62 @@ import javax.swing.*;
 
 /**
  * Click_ActionListener 클래스는 시간표에 과목을 추가하거나 제거하는 작업을 처리하는 ActionListener
- * ///
- * 이 클래스는 사용자가 버튼을 클릭했을 때 발생하는 이벤트를 처리하여, 시간표에 과목을 추가하거나
- * 기존에 추가된 과목을 제거하는 기능
- * <p>각 버튼 클릭 시, HTML 형식으로 담겨 있는 과목 정보를 추출하여, 시간표에 반영하는 방식으로 동작합니다.</p>
  *
  * @author jiwoo-hongb(홍지우, jwhong48 @ gmail.com)
- * @create 2024-11-12
+ * @create 2024-11-18
  * @lastModified 2024-12-26
  *
  * @changelog
  * <ul>
- *  <li>2024-11-12: 최초 생성</li>
- *  <li>2024-11-13: 데이터 읽는 메서드 생성 및 추가</li>
- *  <li>2024-11-14: 오류 수정</li>
- *  <li>2024-11-19: gradle로 프로젝트 변경 및 OpenCsv를 이용해 데이터 읽어오기</li>
+ *  <li>2024-11-18: 최초 생성</li>
+ *  <li>2024-11-19: 전공/교필 선택시 시간표에 추가 기능</li>
+ *  <li>2024-11-26: 데이터 처리</li>
+ *  <li>2024-12-23: 오류 수정</li>
+ *  <li>2024-12-25: 오류 수정</li>
+ *  <li>2024-12-26: 최종 수정</li>
  *  </ul>
  *
- *
- *
- *
- * <p><b>사용 예:</b>
- * <pre>
- * JButton button = new JButton("<html><div class='title'>수학</div></html>");
- * button.addActionListener(new Click_ActionListener(timeTable));
- * </pre>
+ * <p><b>주요 기능:</b>
+ * <ul>
+ * <li>사용자가 버튼을 클릭했을 때 발생하는 이벤트를 처리하여, 시간표에 과목을 추가하거나 기존에 추가된 과목을 제거하는 기능</li>
+ * <li>교과목 필드만 추출하여 별도의 리스트에 저장</li>
+ * <li>각 버튼 클릭 시, HTML 형식으로 담겨 있는 과목 정보를 추출하여, 시간표에 반영하는 방식으로 동작</li>
+ * </ul>
  * </p>
+ *
  */
-
 public class Click_ActionListener implements ActionListener {
 
-    /** 디자인 관련 객체 */
+    /**
+     * <ul><li>디자인 관련 객체 </li></ul>
+     */
     Gui_Design design = new Gui_Design();
 
-    /** 데이터 읽기 관련 객체 */
+    /**
+     * <ul><li> 데이터 읽기 관련 객체 </li></ul>
+     */
     Data_read data = new Data_read();
 
-    /** 데이터 입력/출력 관련 객체 */
+    /**
+     * <ul><li>데이터 입력/출력 관련 객체</li></ul>
+     */
     Data_TF dataTF = new Data_TF();
 
-    /** 현재 JFrame을 저장하는 변수 */
+    /**
+     * <ul><li>현재 JFrame을 저장하는 변수</li></ul>
+     */
     JFrame currentFrame;
 
-    /** 시간표 관련 객체 */
+    /**
+     * <ul><li>시간표 관련 객체 </li></ul>
+     */
     TimeTable timeTable;
 
     /**
-     * Click_ActionListener 클래스의 생성자입니다.
-     * 이 생성자는 시간표 객체를 받아서 해당 객체와 관련된 작업을 처리합니다.
+     * <ul>
+     * <li>Click_ActionListener 클래스의 생성자</li>
+     * <li>시간표 객체를 받아서 해당 객체와 관련된 작업을 처리</li>
+     * </ul>
      *
      * @param timeTable 시간표 객체
      */
@@ -68,7 +76,9 @@ public class Click_ActionListener implements ActionListener {
     }
 
     /**
-     * 버튼을 클릭했을 때 호출되는 메서드로, 과목을 시간표에 추가하는 기능을 수행합니다.
+     * <ul>
+     * <li>버튼을 클릭했을 때 호출되는 메서드로, 과목을 시간표에 추가하는 기능을 수행</li>
+     * </ul>
      *
      * @param e ActionEvent 객체, 버튼 클릭 이벤트
      */
@@ -92,7 +102,9 @@ public class Click_ActionListener implements ActionListener {
     }
 
     /**
-     * 버튼을 클릭했을 때 호출되는 메서드로, 시간표에서 과목을 제거하는 기능을 수행합니다.
+     * <ul>
+     * <li>버튼을 클릭했을 때 호출되는 메서드로, 시간표에서 과목을 제거하는 기능을 수행</li>
+     * </ul>
      *
      * @param e ActionEvent 객체, 버튼 클릭 이벤트
      */

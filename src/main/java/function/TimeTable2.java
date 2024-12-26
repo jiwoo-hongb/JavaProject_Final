@@ -4,8 +4,20 @@ import java.util.*;
 import data.Data_read2;
 
 /**
- * TimeTable2 클래스는 시간표에 교양 과목을 추천하는 기능을 제공합니다.
- * 이 클래스는 과목의 시간 정보와 기존 시간표를 바탕으로, 추가 가능한 교양 과목을 추천합니다.
+ * TimeTable2 클래스는 시간표에 교양 과목을 추천하는 기능을 제공
+ *
+ * @author jiwoo-hongb(홍지우, jwhong48 @ gmail.com)
+ *
+ * @create 2024-12-24
+ * @lastModified 2024-12-26
+ *
+ * @changelog
+ * <ul>
+ *  <li>2024-12-24: 최초 생성</li>
+ *  <li>2024-12-24: 기존 timetable과 교양과목 시간 데이터 읽어오기</li>
+ *  <li>2024-12-25: 오류 수정</li>
+ *  <li>2024-12-26: Javadoc 수정</li>
+ *  </ul>
  *
  * <p><b>주요 기능:</b>
  * <ul>
@@ -14,20 +26,15 @@ import data.Data_read2;
  * <li>요일별로 교양 과목을 추천 리스트에 추가</li>
  * </ul>
  * </p>
- *
- * <p><b>사용 예:</b>
- * <pre>
- * TimeTable2 timeTable = new TimeTable2();
- * Map<String, List<String>> recommendations = timeTable.getRecommendationsRefactored(timetable, dataReader);
- * </pre>
- * </p>
  */
 
 public class TimeTable2 {
 
     /**
-     * 주어진 시간표와 교양 과목 데이터에서 추가 가능한 교양 과목을 추천합니다.
-     * 각 요일별로 추가 가능한 교양 과목을 추천 리스트로 반환합니다.
+     * <ul>
+     * <li>주어진 시간표와 교양 과목 데이터에서 추가 가능한 교양 과목을 추천</li>
+     * <li>각 요일별로 추가 가능한 교양 과목을 추천 리스트로 반환</li>
+     * </ul>
      *
      * <p><b>추천 방법:</b>
      * <ul>
@@ -90,7 +97,7 @@ public class TimeTable2 {
     }
 
     /**
-     * 요일 문자열을 인덱스(0~4)로 변환합니다.
+     * <ul><li>요일 문자열을 인덱스(0~4)로 변환</li></ul>
      *
      * @param day 요일 문자열 ("월", "화", "수", "목", "금")
      * @return 해당 요일에 해당하는 인덱스 (월: 0, 화: 1, ..., 금: 4)
@@ -109,7 +116,7 @@ public class TimeTable2 {
     }
 
     /**
-     * 시간대가 비어 있는지 확인하는 메서드 (현재 구현되지 않음).
+     * <ul><li>시간대가 비어 있는지 확인하는 메서드</li></ul>
      *
      * @param day 과목이 추가될 요일
      * @param subject 확인할 과목
