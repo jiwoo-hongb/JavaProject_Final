@@ -90,7 +90,7 @@ public class Main_Gui2 extends JFrame {
         MyButton showButton = new MyButton("보기");
         showButton.setFont(new Font("Pretendard", Font.BOLD, 20));
         showButton.setForeground(Color.WHITE);
-        showButton.setBackground(design.getPanelColor());
+        showButton.setBackground(design.getBtnColor());
 
         // 버튼 클릭 이벤트 처리
         showButton.addActionListener(e -> {

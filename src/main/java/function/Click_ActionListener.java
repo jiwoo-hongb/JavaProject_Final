@@ -11,10 +11,26 @@ import data.Data_read;
 import javax.swing.*;
 
 /**
- * Click_ActionListener 클래스는 시간표에 과목을 추가하거나 제거하는 작업을 처리하는 ActionListener입니다.
+ * Click_ActionListener 클래스는 시간표에 과목을 추가하거나 제거하는 작업을 처리하는 ActionListener
+ * ///
  * 이 클래스는 사용자가 버튼을 클릭했을 때 발생하는 이벤트를 처리하여, 시간표에 과목을 추가하거나
- * 기존에 추가된 과목을 제거하는 기능을 수행합니다.
+ * 기존에 추가된 과목을 제거하는 기능
  * <p>각 버튼 클릭 시, HTML 형식으로 담겨 있는 과목 정보를 추출하여, 시간표에 반영하는 방식으로 동작합니다.</p>
+ *
+ * @author jiwoo-hongb(홍지우, jwhong48 @ gmail.com)
+ * @create 2024-11-12
+ * @lastModified 2024-12-26
+ *
+ * @changelog
+ * <ul>
+ *  <li>2024-11-12: 최초 생성</li>
+ *  <li>2024-11-13: 데이터 읽는 메서드 생성 및 추가</li>
+ *  <li>2024-11-14: 오류 수정</li>
+ *  <li>2024-11-19: gradle로 프로젝트 변경 및 OpenCsv를 이용해 데이터 읽어오기</li>
+ *  </ul>
+ *
+ *
+ *
  *
  * <p><b>사용 예:</b>
  * <pre>
